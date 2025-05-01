@@ -6,4 +6,4 @@ Frontend de um acervo de produtos à venda, conectando ao backend do projeto.
 
 ## Preview
 
-![img](https://raw.githubusercontent.com/rlneto/vitrine-digital/main/public/assets/vitrine.png)
+![img](https://github.com/rlneto/desapego_front/blob/main/public/assets/vitrine.png?raw=true)
