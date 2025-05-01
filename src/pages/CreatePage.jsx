@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Box, Button, Container, Heading, Input, useColorModeValue, useToast, VStack } from '@chakra-ui/react'
 import { useProductStore } from '../store/product';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreatePage = () => {
@@ -11,6 +12,8 @@ const CreatePage = () => {
   });
 
   const toast = useToast();
+
+  const navigate = useNavigate();
 
   const{ createProduct }=useProductStore()
 
@@ -28,7 +31,8 @@ const CreatePage = () => {
         title: "Sucesso",
         description: message,
         status: "success",
-        isClosable: true
+        isClosable: true,
+        onCloseComplete: () => navigate("/")
       })
     }
   }

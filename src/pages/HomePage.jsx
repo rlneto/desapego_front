@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../store/product'
 import ProductCard from '../components/ProductCard'
+import { useEffect } from 'react'
 
 
 const HomePage = () => {
@@ -25,7 +26,7 @@ const HomePage = () => {
         bgClip={"text"}
         textAlign={"center"}
         >
-          Catálogo de ítens
+          Catálogo de itens
         </Text>
 
         <SimpleGrid
@@ -41,14 +42,13 @@ const HomePage = () => {
             <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
-
-        <Text
+        {products.length === 0 ? (        <Text
         fontSize='xl'
         textAlign={"center"}
         fontWeight='bold'
         color='gray.500'>
-          Sem ítens no catálogo. Que tal <Link to={'/create'}> <Text as='span' color='yellow.500' _hover={{ textDecoration: "underline" }} >incluir</Text></Link> algum?
-        </Text>
+          Sem itens no catálogo. Que tal <Link to={'/create'}> <Text as='span' color='yellow.500' _hover={{ textDecoration: "underline" }} >incluir</Text></Link> algum?
+        </Text>) : null}
       </VStack>
     </Container>
   )
