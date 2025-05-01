@@ -11,7 +11,7 @@ const ProductCard = ({product}) => {
   const textColor  = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
 
-  const { deleteProduct } = useProductStore();
+	const { deleteProduct, updateProduct } = useProductStore();
   const toast = useToast();
   const {isOpen, onOpen, onClose} = useDisclosure();
 
@@ -35,10 +35,29 @@ const ProductCard = ({product}) => {
         isClosable: true,
       })
     }
-
-
   }
-
+  const handleUpdateProduct = async (pid, updatedProduct) => {
+    const { success, message } = await updateProduct(pid, updatedProduct);
+    onClose();
+    if (!success) {
+      toast({
+        title: "Erro",
+        description: message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Sucesso",
+        description: "Produto atualizado com sucesso!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+  
   return (
     <Box
     shadow='lg'
@@ -63,7 +82,7 @@ const ProductCard = ({product}) => {
         </Text>
 
         <HStack spacing={2}>
-          <IconButton icon={<EditIcon />} colorScheme='blue' />
+          <IconButton icon={<EditIcon />} colorScheme='blue' onClick={onOpen}/>
           <IconButton icon={<DeleteIcon />} colorScheme='red' onClick={() => handleDeleteButton(product._id)} />
         </HStack>
 
